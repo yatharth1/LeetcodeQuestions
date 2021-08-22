@@ -1,7 +1,6 @@
 class Solution {
-public:
-    vector<vector<int>> ans;
-    
+public:    
+            vector<vector<int>> ans;
     void dfs(int node, vector<vector<int>>& graph, int dest, vector<int> &helper)
     {
         helper.push_back(node);
