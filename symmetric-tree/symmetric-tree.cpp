@@ -10,21 +10,26 @@
  * };
  */
 class Solution {
-    bool allConditionCheck(TreeNode* p, TreeNode* q)
+private:
+    bool conditions(TreeNode* left, TreeNode* right)
     {
-        if(p == NULL && q == NULL) return true;
+       if(left == NULL || right == NULL)
+       {
+           if(left == right) return true;
+           return false;
+       }
         
-        else if(p == NULL || q == NULL) return false;
+        if(left->val != right-> val) return false;
         
-        else if(p -> val != q -> val) return false;
-        
-        return allConditionCheck(p -> left, q -> right) && allConditionCheck(p -> right, q -> left);
+        return conditions(left -> left, right -> right)
+            &&
+            conditions(left -> right, right -> left);
     }
 public:
     bool isSymmetric(TreeNode* root) {
         
-        if(root == NULL) return true;
+        if(root == NULL) return false;
         
-        return allConditionCheck(root -> left, root -> right);
+        return conditions(root -> left, root -> right);
     }
 };
